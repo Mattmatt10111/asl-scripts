@@ -3,6 +3,7 @@ state("deadspace3")
     int loading: "deadspace3.exe", 0xEAB630;
     int chapter: "deadspace3.exe", 0xDD1AA4, 0x00008090;
     int InCutscene: "deadspace3.exe", 0x00E79214, 0x130, 0x10C, 0x104, 0x1A4, 0x160;
+    int eEvent: "deadspace3.exe", 0xE43EBC;
 }
 
 start
@@ -20,7 +21,6 @@ isLoading
 split
 { 
     return (
-        // You will need to do the final split manually
         (old.chapter == 1 && current.chapter == 10) ||
         (old.chapter == 10 && current.chapter == 20) ||
         (old.chapter == 20 && current.chapter == 30) ||
@@ -34,6 +34,7 @@ split
         (old.chapter == 150 && current.chapter == 160) ||
         (old.chapter == 160 && current.chapter == 170) ||
         (old.chapter == 170 && current.chapter == 180) ||
-        (old.chapter == 180 && current.chapter == 190)
+        (old.chapter == 180 && current.chapter == 190) ||
+        (current.chapter == 190 && current.InCutscene == 0 && old.eEvent == 1 && current.eEvent == 0)
      );
 }
