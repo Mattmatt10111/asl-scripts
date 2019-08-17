@@ -8,9 +8,26 @@ state("deadspace3")
 
 start
 {
-    // Sometimes the timer will start after the first load screen, if this happens
-    // just restart the timer and it will start normally when you gain control
-    return current.chapter == 1 && current.InCutscene == 1;
+    // The timer may start early after the first loadscreen, if this happens just reset the timer
+    // and it will start normally when you gain control, i'm working on fixing this
+    return current.chapter == 1 && current.InCutscene == 1 && current.loading == 0;
+}
+
+init
+{
+    vars.counter = 1;
+    vars.endCheck = false;
+    vars.prevPhase = timer.CurrentPhase;   
+}
+
+update
+{
+    if (timer.CurrentPhase == TimerPhase.Running && vars.prevPhase == TimerPhase.NotRunning) {
+        vars.counter = 1;
+        vars.endCheck = false;
+    }
+
+    vars.prevPhase = timer.CurrentPhase;
 }
 
 isLoading
@@ -19,7 +36,10 @@ isLoading
 }
 
 split
-{ 
+{
+    if (current.chapter == 190 && current.eEvent == 1) {
+    vars.endCheck = true;
+    }
     return (
         (old.chapter == 1 && current.chapter == 10) ||
         (old.chapter == 10 && current.chapter == 20) ||
@@ -35,6 +55,6 @@ split
         (old.chapter == 160 && current.chapter == 170) ||
         (old.chapter == 170 && current.chapter == 180) ||
         (old.chapter == 180 && current.chapter == 190) ||
-        (current.chapter == 190 && current.InCutscene == 0 && old.eEvent == 1 && current.eEvent == 0)
+        (vars.endCheck && current.chapter == 190 && current.InCutscene == 0 && old.eEvent == 1 && current.eEvent == 0)
      );
 }
