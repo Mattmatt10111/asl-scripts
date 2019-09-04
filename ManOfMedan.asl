@@ -7,7 +7,7 @@ state("ManOfMedan-Win64-Shipping")
 
 start
 {
-    return current.scene == 1 && old.loading1 == 1;
+    return current.scene == 1 && old.loading1 == 1 && current.loading1 == 0;
 }
 
 isLoading
