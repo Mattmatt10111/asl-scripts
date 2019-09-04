@@ -1,0 +1,61 @@
+state("ManOfMedan-Win64-Shipping")
+{ 
+    int scene: "ManOfMedan-Win64-Shipping.exe", 0x5058740;
+    int loading1: 0x04EE1A58, 0x0, 0x18, 0x1A8, 0x4E8, 0x518;
+    int loading2: 0x04F1B6E0, 0x1A0, 0x220, 0x0, 0x20, 0x418;
+}
+
+start
+{
+    return current.scene == 1 && old.loading1 == 1;
+}
+
+isLoading
+{
+     return current.loading1 == 1 || current.loading2 == 1;
+}
+
+split
+{
+    return (
+        (old.scene == 1 && current.scene == 2) ||
+        (old.scene == 2 && current.scene == 3) ||
+        (old.scene == 3 && current.scene == 4) ||
+        (old.scene == 4 && current.scene == 5) ||
+        (old.scene == 5 && current.scene == 6) ||
+        (old.scene == 6 && current.scene == 7) ||
+        (old.scene == 7 && current.scene == 8) ||
+        (old.scene == 8 && current.scene == 9) ||
+        (old.scene == 9 && current.scene == 10) ||
+        (old.scene == 10 && current.scene == 11) ||
+        (old.scene == 11 && current.scene == 12) ||
+        (old.scene == 12 && current.scene == 13) ||
+        (old.scene == 13 && current.scene == 14) ||
+        (old.scene == 14 && current.scene == 15) ||
+        (old.scene == 15 && current.scene == 16) ||
+        (old.scene == 16 && current.scene == 17) ||
+        (old.scene == 17 && current.scene == 18) ||
+        (old.scene == 18 && current.scene == 19) ||
+        (old.scene == 19 && current.scene == 20) ||
+        (old.scene == 20 && current.scene == 21) ||
+        (old.scene == 21 && current.scene == 22) ||
+        (old.scene == 22 && current.scene == 23) ||
+        (old.scene == 23 && current.scene == 24) ||
+        (old.scene == 24 && current.scene == 25) ||
+        (old.scene == 25 && current.scene == 26) ||
+        (old.scene == 26 && current.scene == 27) ||
+        (old.scene == 27 && current.scene == 28) ||
+        (old.scene == 28 && current.scene == 29) ||
+        (old.scene == 29 && current.scene == 30) ||
+        (old.scene == 30 && current.scene == 31) ||
+        (old.scene == 31 && current.scene == 32) ||
+        (old.scene == 32 && current.scene == 33) ||
+        (old.scene == 33 && current.scene == 34) ||
+        (old.scene == 34 && current.scene == 35) ||
+        (old.scene == 35 && current.scene == 36) ||
+        (old.scene == 36 && current.scene == 37) ||
+        (old.scene == 37 && current.scene == 38) ||
+        (old.scene == 38 && current.scene == 39) ||
+        (old.scene == 39 && current.scene == 40)
+     );
+}
