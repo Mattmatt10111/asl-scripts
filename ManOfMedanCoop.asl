@@ -12,7 +12,7 @@ start
 
 isLoading
 {
-     return current.loading1 == 1 || current.loading2 == 1;
+    return (current.loading1 == 1 || current.loading2 == 1) && current.scene != 17;
 }
 
 split
