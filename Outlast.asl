@@ -1,9 +1,24 @@
 state("OLGame")
 {
+	// unknown/default version
+}
+
+state("OLGame", "Patch2")
+{
     int isLoading : "OLGame.exe", 0x01FFBCC8, 0x118;
     float coords : "OLGame.exe", 0x02020F38, 0x278, 0x40, 0x454, 0x80;
     int checkpoint : "OLGame.exe", 0x02020C88, 0x3AC;
     int pause : "OLGame.exe", 0x2022C93;
+}
+
+init
+{
+	switch (modules.First().ModuleMemorySize)
+	{
+		case 35831808:
+			version = "Patch2";
+			break;
+	}
 }
 
 start
