@@ -57,7 +57,7 @@ split
    {
     return true;
   }
-    if (current.checkpoint > old.checkpoint) 
+    if (current.checkpoint > old.checkpoint && current.pause == 0) 
   {
     return true;
  }
