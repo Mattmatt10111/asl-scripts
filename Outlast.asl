@@ -52,11 +52,15 @@ split
 {
     if (Math.Abs(-4098.51 - current.zcoord) < 0.01 && current.InControl == 0) {
         vars.finalSplit = true;
-   }
+  }
     if (vars.finalSplit && vars.finalSplitCounter == 8)
    {
     return true;
-   }
+  }
+    if (current.checkpoint > old.checkpoint) 
+  {
+    return true;
+ }
 }
 
 isLoading
