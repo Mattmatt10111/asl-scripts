@@ -16,7 +16,8 @@ state("OLGame", "Patch2")
 
 start
 {
-     return current.xcoord > -16422.93 && current.xcoord < -16416.11 && current.inControl == 1 || current.xcoord > 9543.68 && current.xcoord < 9550.54 && current.inControl == 1;
+     return current.xcoord > -16422.93 && current.xcoord < -16416.11 && current.inControl == 1 ||
+     current.xcoord > 9543.68 && current.xcoord < 9550.54 && current.inControl == 1;
 }
 
 init
