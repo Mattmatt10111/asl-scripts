@@ -1,14 +1,20 @@
 state("Saboteur")
 {
     int mission: "Saboteur.exe", 0x010977AC, 0x14, 0x1A0;
-    bool isLoading: "", 0x010964F4, 0xBBD0;
+    byte isLoading: "", 0x010964F4, 0xBBD0;
+    float xcoord: "Saboteur.exe", 0xE32FE8;
+    float ycoord: "Saboteur.exe", 0xE32FF0;
+    float zcoord: "Saboteur.exe", 0xE32FEC;
 }
 
 state("Saboteur", "GOG")
 {
     // GOG
     int mission: "Saboteur.exe", 0x010AADCC, 0x14, 0x1A0;
-    bool isLoading: "", 0x010A9B14, 0xBBD0;
+    byte isLoading: "", 0x010A9B14, 0xBBD0;
+    float xcoord: "Saboteur.exe", 0xE465E8;
+    float ycoord: "Saboteur.exe", 0xE465F0;
+    float zcoord: "Saboteur.exe", 0xE465EC;
 }
 
 init
@@ -21,12 +27,12 @@ init
 
 start
 {
-     return current.mission == 0 && current.isLoading;
+     return current.mission == 0 && current.isLoading == 1;
 }
 
 isLoading
 {
-     return current.isLoading;
+     return current.isLoading == 1;
 }
 
 split
@@ -56,6 +62,9 @@ split
         (old.mission == 27 && current.mission == 28) || // Needs of the Few... or the One
         (old.mission == 28 && current.mission == 29) || // From the Ashes
         (old.mission == 29 && current.mission == 30) || // 'C'est ici l'empire de la mort'
-        (old.mission == 30 && current.mission == 31)    // Deja Boom 
+        (old.mission == 30 && current.mission == 31) || // Deja Boom
+        (current.zcoord > 274.64 && current.zcoord < 274.66 && current.xcoord > -1134.79 && current.xcoord < -1134.77 &&
+         current.ycoord > 392.70 && current.ycoord < 392.72 && old.isLoading == 0 && current.isLoading == 1) // Final Split
     );
 }
+
