@@ -68,7 +68,7 @@ split
    {
     return true;
    }
-    if (vars.finalSplitWB && vars.finalSplitWBCounter == 6)
+    if (vars.finalSplitWB && vars.finalSplitWBCounter == 7)
    {
     return true;
    }
