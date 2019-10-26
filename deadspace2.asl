@@ -52,7 +52,7 @@ update
 
 split
 {
-    if ((current.chapter - 1) == old.chapter && current.chapter > vars.counter) {
+    if (current.chapter > vars.counter) {
         vars.counter = current.chapter;
         return true;
     }
