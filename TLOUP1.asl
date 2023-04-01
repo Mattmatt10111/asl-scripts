@@ -66,7 +66,7 @@ startup
             "This game uses Time without Loads (Game Time) as the main timing method.\n"+
             "LiveSplit is currently set to show Real Time (RTA).\n"+
             "Would you like to set the timing method to Game Time?",
-            "LiveSplit | The Last of Us Part 1",
+            "LiveSplit | The Last of Us Part 1 (PC)",
             MessageBoxButtons.YesNo,MessageBoxIcon.Question
         );
         
