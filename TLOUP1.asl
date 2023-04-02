@@ -5,6 +5,7 @@ state("tlou-i")
     int inCutscene: "tlou-i.exe", 0x4495A00;
     int mainmenu: "tlou-i.exe", 0x34D83E8;
     int inGame: "tlou-i.exe", 0x3539BE0;
+    int fps: "tlou-i.exe", 0x64AAC68;
     string13 chapter: 0x04321E68, 0x2C;
     // Main Game
     // Hometown
@@ -102,7 +103,7 @@ isLoading
 {
     return 
      (current.loading != 0 || current.pause == 1 || current.mainmenu == 1 || 
-    current.inGame == 0);
+    current.inGame == 0 || current.fps >= 2000000000);
 }
 
 split
