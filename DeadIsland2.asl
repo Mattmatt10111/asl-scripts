@@ -12,7 +12,6 @@ state("DeadIsland-Win64-Shipping")
 startup
 {
     		if (timer.CurrentTimingMethod == TimingMethod.RealTime)
-// Asks user to change to game time if LiveSplit is currently set to Real Time.
     {        
         var timingMessage = MessageBox.Show (
             "This game uses Time without Loads (Game Time) as the main timing method.\n"+
