@@ -36,12 +36,15 @@ init
 
 start
 {
-    return current.questtotal == 0 && current.queststring == "FLIGHT OF THE DAMNED" && current.inCutscene == 0;
+    return 
+     current.questtotal == 0 && current.queststring == "FLIGHT OF THE DAMNED" && current.inCutscene == 0;
 }
 
 isLoading
 {
-    return current.pause > 0 || current.loading1 == 1 || current.loading2 == 0 || current.inCutscene == 1;
+    return 
+     current.pause > 0 || current.loading1 == 1 || current.loading2 == 0 || current.inCutscene == 1
+     || current.inCutscene == 2;
 }
 
 split
