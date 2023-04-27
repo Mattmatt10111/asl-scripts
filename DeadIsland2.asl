@@ -1,12 +1,12 @@
 state("DeadIsland-Win64-Shipping")
 {
     int pause: "DeadIsland-Win64-Shipping.exe", 0x0798B360, 0x90, 0x10, 0x80, 0x40, 0xC0, 0x38, 0x5448;
-    int loading1: "DeadIsland-Win64-Shipping.exe", 0x6FDBA70;
     string20 queststring: "DeadIsland-Win64-Shipping.exe", 0x078C96B8, 0xD0, 0x60, 0xB8, 0x48, 0x30, 0x20, 0x099C;
     int questtotal: "DeadIsland-Win64-Shipping.exe", 0x07923DB0, 0x8, 0xD0, 0x758, 0x28, 0x30, 0x90, 0x98;
-    // Thanks to TheDementedSalad for helping me out with the loading2 address.
-    int loading2: "DeadIsland-Win64-Shipping.exe", 0x075D88B0, 0x50;
+    // Thanks to TheDementedSalad for helping me out with the loading address.
+    int loading: "DeadIsland-Win64-Shipping.exe", 0x075D88B0, 0x50;
     int inCutscene: "DeadIsland-Win64-Shipping.exe", 0x0790C150, 0x30, 0xC48, 0x20, 0x600, 0x128, 0xC0, 0x48;
+    string100 mainmenu: "DeadIsland-Win64-Shipping.exe", 0x07750628, 0x28, 0x5F0, 0x570, 0x88, 0xD8, 0xE;
 }
 
 startup
@@ -43,8 +43,7 @@ start
 isLoading
 {
     return 
-     current.pause > 0 || current.loading1 == 1 || current.loading2 == 0 || current.inCutscene == 1
-     || current.inCutscene == 2;
+     current.loading == 0 || current.inCutscene == 1 || current.inCutscene == 2;
 }
 
 split
