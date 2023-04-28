@@ -1,61 +1,64 @@
 state("tlou-i")
 { 
-    int loading: "tlou-i.exe",0x60294B0;
-    int pause: "tlou-i.exe", 0x361D7A0;
-    int inCutscene: "tlou-i.exe", 0x449BB00;
-    int mainmenu: "tlou-i.exe", 0x34DE3D8;
-    int inGame: "tlou-i.exe", 0x353FBD0;
-    int fps: "tlou-i.exe", 0x64B39F8;
-    string13 chapter: 0x04327F68, 0x2C;
+    int loading: "tlou-i.exe",0x60F9250;
+    byte pause: "tlou-i.exe", 0x36A17DF;
+    byte inCutscene: "tlou-i.exe", 0x066A2E98, 0xC9;
+    int mainmenu: "tlou-i.exe", 0x3504428;
+    int inGame: "tlou-i.exe", 0x3565E60;
+    int fps: "tlou-i.exe", 0x64D2878;
+    double IGT: "tlou-i.exe", 0x0437AD40, 0x80, 0x968;
+    byte timerpaused: "tlou-i.exe", 0x60F68A8, 0x000288E9;
+    byte blackscreen: "tlou-i.exe", 0x669D660;
+    string13 chapter: 0x0434E2B8, 0x2C;
     // Main Game
     // Hometown
-    string8 prologue: 0x04327F68, 0x37;
+    string8 prologue: 0x0434E2B8, 0x37;
     // The Quarentine Zone
-    string14 twentyyearslater: 0x04327F68, 0x42;
-    string15 beyondthewall: 0x04327F68, 0x42;
-    string9 theslums: 0x04327F68, 0x42;
-    string9 thecargo: 0x04327F68, 0x42;
+    string14 twentyyearslater: 0x0434E2B8, 0x42;
+    string15 beyondthewall: 0x0434E2B8, 0x42;
+    string9 theslums: 0x0434E2B8, 0x42;
+    string9 thecargo: 0x0434E2B8, 0x42;
     // The Outskirts
-    string7 outside: 0x04327F68, 0x3C;
-    string8 downtown: 0x04327F68, 0x3C;
-    string6 museum: 0x04327F68, 0x3C;
-    string20 capitol: 0x04327F68, 0x3C;
+    string7 outside: 0x0434E2B8, 0x3C;
+    string8 downtown: 0x0434E2B8, 0x3C;
+    string6 museum: 0x0434E2B8, 0x3C;
+    string20 capitol: 0x0434E2B8, 0x3C;
     // Bill's Town
-    string9 thewoods: 0x04327F68, 0x3A;
-    string9 safehouse: 0x04327F68, 0x3A;
-    string9 graveyard: 0x04327F68, 0x3A;
-    string18 highschool: 0x04327F68, 0x3A;
+    string9 thewoods: 0x0434E2B8, 0x3A;
+    string9 safehouse: 0x0434E2B8, 0x3A;
+    string9 graveyard: 0x0434E2B8, 0x3A;
+    string18 highschool: 0x0434E2B8, 0x3A;
     // Pittsburgh
-    string18 aloneandforsaken: 0x04327F68, 0x39;
-    string11 hotel: 0x04327F68, 0x39;
-    string18 financial: 0x04327F68, 0x39;
-    string15 escapethecity: 0x04327F68, 0x39;
+    string18 aloneandforsaken: 0x0434E2B8, 0x39;
+    string11 hotel: 0x0434E2B8, 0x39;
+    string18 financial: 0x0434E2B8, 0x39;
+    string15 escapethecity: 0x0434E2B8, 0x39;
     // The Suburbs
-    string6 sewers: 0x04327F68, 0x3A;
-    string7 suburbs: 0x04327F68, 0x3A;
+    string6 sewers: 0x0434E2B8, 0x3A;
+    string7 suburbs: 0x0434E2B8, 0x3A;
     // Tommy's Dam
-    string17 dam: 0x04327F68, 0x3A;
-    string11 ranch: 0x04327F68, 0x3A;
+    string17 dam: 0x0434E2B8, 0x3A;
+    string11 ranch: 0x0434E2B8, 0x3A;
     // The University
-    string12 bighorns: 0x04327F68, 0x3D;
-    string16 sciencebuilding: 0x04327F68, 0x3D;
+    string12 bighorns: 0x0434E2B8, 0x3D;
+    string16 sciencebuilding: 0x0434E2B8, 0x3D;
     // Lakeside Resort
-    string8 thehunt: 0x04327F68, 0x3E;
-    string12 cabinresort: 0x04327F68, 0x3E;
+    string8 thehunt: 0x0434E2B8, 0x3E;
+    string12 cabinresort: 0x0434E2B8, 0x3E;
     // Bus Depot
-    string12 highway: 0x04327F68, 0x38;
-    string18 tunnel: 0x04327F68, 0x38;
+    string12 highway: 0x0434E2B8, 0x38;
+    string18 tunnel: 0x0434E2B8, 0x38;
     // The Firefly Lab
-    string12 hospital: 0x04327F68, 0x3E;
+    string12 hospital: 0x0434E2B8, 0x3E;
     // Jackson
-    string8 epilogue: 0x04327F68, 0x36;
+    string8 epilogue: 0x0434E2B8, 0x36;
     // Left Behind
-    string15 backinaflash: 0x04327F68, 0x3E;
-    string8 mallrats: 0x04327F68, 0x37;
-    string8 soclose: 0x04327F68, 0x37;
-    string13 funandgames: 0x04327F68, 0x3C;
-    string21 enemyofmyenemy: 0x04327F68, 0x44;
-    string27 escapefromlib: 0x04327F68, 0x4A;
+    string15 backinaflash: 0x0434E2B8, 0x3E;
+    string8 mallrats: 0x0434E2B8, 0x37;
+    string8 soclose: 0x0434E2B8, 0x37;
+    string13 funandgames: 0x0434E2B8, 0x3C;
+    string21 enemyofmyenemy: 0x0434E2B8, 0x44;
+    string27 escapefromlib: 0x0434E2B8, 0x4A;
 }
 
 startup
@@ -76,7 +79,7 @@ startup
             timer.CurrentTimingMethod = TimingMethod.GameTime;
         }
     }
-    refreshRate = 30;
+    refreshRate = 60;
 }
 
 init
@@ -87,10 +90,8 @@ init
 start
 {
     return
-     (current.prologue == "Prologue" && current.inCutscene == 0
-    && current.inGame == 1 && current.loading == 0 ||
-    current.backinaflash == "Back in a Flash" && current.inCutscene == 0 
-    && current.inGame == 1 && current.loading == 0);
+     (current.prologue == "Prologue" && current.IGT > 0 || 
+     current.backinaflash == "Back in a Flash" && current.IGT > 0);
 }
 
 reset
@@ -102,8 +103,8 @@ reset
 isLoading
 {
     return 
-     (current.loading != 0 || current.pause == 1 || current.mainmenu == 1 || 
-    current.inGame == 0 || current.fps >= 2000000000);
+      current.loading == 1 && current.timerpaused == 0 || current.blackscreen == 1 || current.inCutscene == 1
+    && current.timerpaused == 1 || current.fps > 2100000000 || current.mainmenu == 1;
 }
 
 split
