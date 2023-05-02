@@ -39,12 +39,14 @@ start
 
 split
 {
-    return current.questtotal == old.questtotal + 1;
+    return
+     current.questtotal == old.questtotal + 1;
 }
 
 isLoading
 {
-    return  current.loading == 0 || current.inCutscene == 1 || current.inCutscene == 2;
+    return
+     current.loading == 0 || current.inCutscene == 1 || current.inCutscene == 2;
 }
 
 exit
