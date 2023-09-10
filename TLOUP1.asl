@@ -1,6 +1,7 @@
 state("tlou-i")
 { 
     int      loading:     "tlou-i.exe", 0x6410E60;
+    uint     health:      "tlou-i.exe",  0x67B1238, 0xC8, 0x28, 0x30, 0x0, 0x88, 0x70, 0x1B8;
     byte     inCutscene:  "tlou-i.exe", 0x68D4CD8, 0xC9;
     int      mainmenu:    "tlou-i.exe", 0x35C0CB8;
     int      fps:         "tlou-i.exe", 0x6703238;
@@ -102,7 +103,7 @@ isLoading
 {
     return 
       current.loading == 1 && current.timerpaused == 0 || current.blackscreen == 1 || current.inCutscene == 1
-    && current.timerpaused == 1 || current.fps > 2100000000 || current.mainmenu == 1;
+    && current.timerpaused == 1 || current.fps > 2100000000 || current.mainmenu == 1 || current.health == 0;
 }
 
 split
