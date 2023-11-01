@@ -1,7 +1,7 @@
-state("tlou-i")
+state("tlou-i", "1.1.0") //138895360
 { 
     int      loading:     "tlou-i.exe", 0x6410E60;
-    uint     health:      "tlou-i.exe",  0x67B1238, 0xC8, 0x28, 0x30, 0x0, 0x88, 0x70, 0x1B8;
+    uint     health:      "tlou-i.exe", 0x67B1238, 0xC8, 0x28, 0x30, 0x0, 0x88, 0x70, 0x1B8;
     byte     inCutscene:  "tlou-i.exe", 0x68D4CD8, 0xC9;
     int      mainmenu:    "tlou-i.exe", 0x35C0CB8;
     int      fps:         "tlou-i.exe", 0x6703238;
@@ -60,6 +60,68 @@ state("tlou-i")
     string27 escapefromlib:             0x0470E488, 0x4A;
 }
 
+state("tlou-i", "1.0.5.1") //138616832 
+{ 
+    int      loading:     "tlou-i.exe", 0x61049D0;
+    //float     health:      "tlou-i.exe", 0x064FB340, 0x9D0, 0x140, 0xFA0;
+    byte     inCutscene:  "tlou-i.exe", 0x066AE3D8, 0xC9;
+    int      mainmenu:    "tlou-i.exe", 0x350A628;
+    int      fps:         "tlou-i.exe", 0x64DE058;
+    double   IGT:         "tlou-i.exe", 0x04381020, 0x80, 0x978;
+    byte     timerpaused: "tlou-i.exe", 0x6102028, 0x000288E9;
+    byte     blackscreen: "tlou-i.exe", 0x66A8BD0;
+    string13 chapter:                   0x04354598, 0x2C;
+    // Main Game
+    // Hometown
+    string8  prologue:                  0x04354598, 0x37;
+    // The Quarentine Zone
+    string14 twentyyearslater:          0x04354598, 0x42;
+    string15 beyondthewall:             0x04354598, 0x42;
+    string9  theslums:                  0x04354598, 0x42;
+    string9  thecargo:                  0x04354598, 0x42;
+    // The Outskirts
+    string7  outside:                   0x04354598, 0x3C;
+    string8  downtown:                  0x04354598, 0x3C;
+    string6  museum:                    0x04354598, 0x3C;
+    string20 capitol:                   0x04354598, 0x3C;
+    // Bill's Town
+    string9  thewoods:                  0x04354598, 0x3A;
+    string9  safehouse:                 0x04354598, 0x3A;
+    string9  graveyard:                 0x04354598, 0x3A;
+    string18 highschool:                0x04354598, 0x3A;
+    // Pittsburgh
+    string18 aloneandforsaken:          0x04354598, 0x39;
+    string11 hotel:                     0x04354598, 0x39;
+    string18 financial:                 0x04354598, 0x39;
+    string15 escapethecity:             0x04354598, 0x39;
+    // The Suburbs
+    string6  sewers:                    0x04354598, 0x3A;
+    string7  suburbs:                   0x04354598, 0x3A;
+    // Tommy's Dam
+    string17 dam:                       0x04354598, 0x3A;
+    string11 ranch:                     0x04354598, 0x3A;
+    // The University
+    string12 bighorns:                  0x04354598, 0x3D;
+    string16 sciencebuilding:           0x04354598, 0x3D;
+    // Lakeside Resort
+    string8  thehunt:                   0x04354598, 0x3E;
+    string12 cabinresort:               0x04354598, 0x3E;
+    // Bus Depot
+    string12 highway:                   0x04354598, 0x38;
+    string18 tunnel:                    0x04354598, 0x38;
+    // The Firefly Lab
+    string12 hospital:                  0x04354598, 0x3E;
+    // Jackson
+    string8  epilogue:                  0x04354598, 0x36;
+    // Left Behind
+    string15 backinaflash:              0x04354598, 0x3E;
+    string8  mallrats:                  0x04354598, 0x37;
+    string8  soclose:                   0x04354598, 0x37;
+    string13 funandgames:               0x04354598, 0x3C;
+    string21 enemyofmyenemy:            0x04354598, 0x44;
+    string27 escapefromlib:             0x04354598, 0x4A;
+}
+
 startup
 {
     		if (timer.CurrentTimingMethod == TimingMethod.RealTime)
@@ -84,13 +146,22 @@ startup
 init
 {
     timer.IsGameTimePaused = false;
+    switch (modules.First().ModuleMemorySize)
+	{
+        case (138895360):
+			version = "1.1.0";
+			break;
+        case (138616832):
+			version = "1.0.5.1";
+			break;
+	}
 }
 
 start
 {
     return
-     (current.prologue == "Prologue" && current.IGT > 0 || 
-     current.backinaflash == "Back in a Flash" && current.IGT > 0);
+     current.prologue == "Prologue" && current.IGT > 0 && old.loading == 1|| 
+     current.backinaflash == "Back in a Flash" && current.IGT > 0 && old.loading == 1;
 }
 
 reset
@@ -103,7 +174,7 @@ isLoading
 {
     return 
       current.loading == 1 && current.timerpaused == 0 || current.blackscreen == 1 || current.inCutscene == 1
-    && current.timerpaused == 1 || current.fps > 2100000000 || current.mainmenu == 1 || current.health == 0;
+    && current.timerpaused == 1 || current.fps > 2100000000 || current.mainmenu == 1;
 }
 
 split
