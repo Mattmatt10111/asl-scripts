@@ -14,8 +14,17 @@ state("ds", "Directors Cut 1.003") //136011776
      int mainmenu: "ds.exe", 0x4F73E7C;
 }
 
+state("DeathStranding", "Epic") //128704512 // Version - 2742586.206.1
+
+{
+     int  loading: "DeathStranding.exe", 0x075520A8, 0x268, 0x18;
+     int  results: "DeathStranding.exe", 0x075520A8, 0x228, 0x18;
+     int mainmenu: "DeathStranding.exe", 0x490B15C;
+}
+
 init
 {	
+    print(modules.First().ModuleMemorySize.ToString());
 	switch (modules.First().ModuleMemorySize)
 	{
         case (128704512):
