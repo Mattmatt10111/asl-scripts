@@ -9,7 +9,17 @@ state("Saboteur")
 
 state("Saboteur", "GOG")
 {
-    // GOG
+    // GOG 19122752
+    int mission: "Saboteur.exe", 0x010AADCC, 0x14, 0x1A0;
+    byte isLoading: "", 0x010A9B14, 0xBBD0;
+    float xcoord: "Saboteur.exe", 0xE465E8;
+    float ycoord: "Saboteur.exe", 0xE465F0;
+    float zcoord: "Saboteur.exe", 0xE465EC;
+}
+
+state("Saboteur", "Steam")
+{
+    // Steam 19296256
     int mission: "Saboteur.exe", 0x010AADCC, 0x14, 0x1A0;
     byte isLoading: "", 0x010A9B14, 0xBBD0;
     float xcoord: "Saboteur.exe", 0xE465E8;
@@ -19,10 +29,16 @@ state("Saboteur", "GOG")
 
 init
 {   
-    version = "";
-    if (modules.First().ModuleMemorySize == 19122752) {
-        version = "GOG";
-    }
+    print(modules.First().ModuleMemorySize.ToString());
+    	switch (modules.First().ModuleMemorySize)
+	{
+        case (19122752):
+			version = "GOG";
+			break;
+        case (19296256):
+			version = "Steam";
+			break;
+	}
 }
 
 start
@@ -67,4 +83,3 @@ split
          current.ycoord > 392.70 && current.ycoord < 392.72 && old.isLoading == 0 && current.isLoading == 1) // Final Split
     );
 }
-
