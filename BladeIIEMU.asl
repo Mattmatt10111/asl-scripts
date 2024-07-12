@@ -23,11 +23,9 @@ startup
         emu.Make<float>("U_zcoord", 0x543A2C);
 		emu.Make<int>("U_LevelID", 0x49DE50);
 		emu.Make<byte>("U_CoreState", 0x92CECE);
+		emu.Make<int>("U_EndLevelLoad", 0x49E498);
         return true;
     });
-
-		settings.Add("ng+", true, "New Game +");
-		settings.Add("ng", false, "New Game");
 }
 
 init
@@ -48,6 +46,7 @@ update
 		"LevelID",
 		"CoreState",
 		"cutsceneLoad",
+		"EndLevelLoad",
 	};
 
 	// (placeholder) have some logic to work out the version and create the prefix
@@ -72,28 +71,16 @@ onStart
 
 start
 {
-		if(settings["ng+"]){
-return current.cutsceneLoad == 1 && old.cutsceneLoad == 0 && current.LevelID == 1;
-    }
-
-		if(settings["ng"]){
-return current.cutsceneLoad == 1 && old.cutsceneLoad == 0 && current.LevelID == 21;
-    }
+    return (current.cutsceneLoad == 1 && old.cutsceneLoad == 0 && current.LevelID == 21) ||
+	       (current.cutsceneLoad == 1 && old.cutsceneLoad == 0 && current.LevelID == 1);
 }
 
 split
 {
-	if(settings["ng+"]){
-return (current.LevelID == old.LevelID + 1) ||
-    (current.LevelID == 20 && current.InCutscene == 1 && old.InCutscene == 0 && current.CoreState == 1);
-    }
-
-		if(settings["ng"]){
-return (current.LevelID == old.LevelID + 1) ||
-       (current.LevelID == 1 && old.LevelID == 21) ||
-    (current.LevelID == 20 && current.InCutscene == 1 && old.InCutscene == 0 && current.CoreState == 1);
-    }
+	return (current.EndLevelLoad == 1 && old.EndLevelLoad == 0) ||
+           (current.LevelID == 20 && current.InCutscene == 1 && old.InCutscene == 0 && current.CoreState == 1);
 }
+
 
 shutdown
 {
