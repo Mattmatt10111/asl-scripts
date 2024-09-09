@@ -1,27 +1,36 @@
 state("CastingFrankStone-Win64-Shipping", "1.00") //157724672 
 
 {
-    //int loading1: 0x08E07098, 0x0, 0xE88, 0xC70;
-    //int loading2: "CastingFrankStone-Win64-Shipping.exe", 0x8A61AF0;
-    int mainmenu: 0x08A5E2D0, 0x28, 0x140, 0xD8;
-    //int credits: 0x08B1A628, 0x48, 0x224;
+    //int mainmenu: 0x08A5E2D0, 0x28, 0x140, 0xD8;
     string22 chapter: 0x08DE66A0, 0x8, 0xD0, 0x380, 0x0;
 }
+
+state("CastingFrankStone-Win64-Shipping", "1.01") //157814784 
+
+
+{
+    //int mainmenu: 0x08A5E2D0, 0x28, 0x140, 0xD8;
+    string22 chapter: 0x08A7D630, 0x180, 0x248, 0x10, 0x20, 0x0;
+}
+
 
 init
 {	
     print(modules.First().ModuleMemorySize.ToString());
 	switch (modules.First().ModuleMemorySize)
 	{
-        case (157724672 ):
+        case (157724672):
 			version = "1.00";
+			break;
+        case (157814784):
+			version = "1.01";
 			break;
 	}
 }
 
 start
 {
-    return current.mainmenu == 0 && current.chapter == "The Burning";
+    return current.chapter == "The Burning";
 }
 
 split
@@ -45,7 +54,7 @@ split
 
 isLoading
 {
-    //return current.loading1 == 1 || current.loading2 == 1;
+    
 }
 
     
