@@ -1,31 +1,29 @@
-state("CastingFrankStone-Win64-Shipping", "1.00") //157724672 
+state("CastingFrankStone-Win64-Shipping")
 
 {
-    //int mainmenu: 0x08A5E2D0, 0x28, 0x140, 0xD8;
-    string22 chapter: 0x08DE66A0, 0x8, 0xD0, 0x380, 0x0;
+
 }
-
-state("CastingFrankStone-Win64-Shipping", "1.01") //157814784 
-
-
-{
-    //int mainmenu: 0x08A5E2D0, 0x28, 0x140, 0xD8;
-    string22 chapter: 0x08A75158, 0x78, 0x98, 0x380, 0x0;
-}
-
 
 init
 {	
-    print(modules.First().ModuleMemorySize.ToString());
-	switch (modules.First().ModuleMemorySize)
-	{
-        case (157724672):
-			version = "1.00";
-			break;
-        case (157814784):
-			version = "1.01";
-			break;
-	}
+    IntPtr gEngine = vars.Helper.ScanRel(3, "48 89 05 ???????? 48 85 c9 74 ?? e8 ???????? 48 8d 4d");
+
+    vars.Helper["chapter"] = vars.Helper.MakeString(gEngine, 0x10A8, 0x38, 0x0, 0x30, 0x190, 0x18, 0x380, 0x0);
+    vars.Helper["chapter"].FailAction = MemoryWatcher.ReadFailAction.SetZeroOrNull;
+}
+
+update
+{
+    vars.Helper.Update();  //The splitter will not work without this
+    vars.Helper.MapPointers();
+
+    print(current.chapter);
+}
+
+startup
+{
+      Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Basic");
+    vars.Helper.GameName = "The Casting of Frank Stone";
 }
 
 start
