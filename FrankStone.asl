@@ -16,8 +16,6 @@ update
 {
     vars.Helper.Update();  //The splitter will not work without this
     vars.Helper.MapPointers();
-
-    print(current.chapter);
 }
 
 startup
@@ -28,25 +26,25 @@ startup
 
 start
 {
-    return current.chapter == "The Burning";
+    return current.chapter == "The Burning Maw";
 }
 
 split
 {
    return (
-          (current.chapter == "In The Hous" && old.chapter == "The Burning") ||
-          (current.chapter == "A Curiosity" && old.chapter == "In The Hous") ||
-          (current.chapter == "These Walls" && old.chapter == "A Curiosity") ||
-          (current.chapter == "The Phantom" && old.chapter == "These Walls") ||
-          (current.chapter == "Beyond The " && old.chapter == "The Phantom") ||
-          (current.chapter == "A Perilous " && old.chapter == "Beyond The ") ||
-          (current.chapter == "Mystery Man" && old.chapter == "A Perilous ") ||
-          (current.chapter == "Hunting Gro" && old.chapter == "Mystery Man") ||
-          (current.chapter == "In The Hous" && old.chapter == "Hunting Gro") ||
-          (current.chapter == "All Paths M" && old.chapter == "In The Hous") ||
-          (current.chapter == "Closing The" && old.chapter == "All Paths M") ||
-          (current.chapter == "Murder Mill" && old.chapter == "Closing The") ||
-          (current.chapter == "The Massacr" && old.chapter == "Murder Mill")
+          (current.chapter == "In The House of Darkness" && old.chapter == "The Burning Maw") ||
+          (current.chapter == "A Curiosity On Main Street" && old.chapter == "In The House of Darkness") ||
+          (current.chapter == "These Walls Have Eyes" && old.chapter == "A Curiosity On Main Street") ||
+          (current.chapter == "The Phantom Of Cedar Steel" && old.chapter == "These Walls Have Eyes") ||
+          (current.chapter == "Beyond The Gate" && old.chapter == "The Phantom Of Cedar Steel") ||
+          (current.chapter == "A Perilous Place" && old.chapter == "Beyond The Gate") ||
+          (current.chapter == "Mystery Manor" && old.chapter == "A Perilous Place") ||
+          (current.chapter == "Hunting Ground" && old.chapter == "Mystery Manor") ||
+          (current.chapter == "In The House Of Madness" && old.chapter == "Hunting Ground") ||
+          (current.chapter == "All Paths Must Cross" && old.chapter == "In The House Of Madness") ||
+          (current.chapter == "Closing The Noose" && old.chapter == "All Paths Must Cross") ||
+          (current.chapter == "Murder Mill" && old.chapter == "Closing The Noose") ||
+          (current.chapter == "The Massacre At Gerant Manor" && old.chapter == "Murder Mill")
           );
 }
 
