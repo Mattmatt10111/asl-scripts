@@ -9,7 +9,7 @@ state("Dead Space", "Steam") //12353536
   byte InCutscene: "Dead Space.exe", 0xB4BA81;
 }
 
-state("Dead Space", "Origin") //12005376 
+state("Dead Space", "EA") //12005376 
 
 
 {
@@ -30,7 +30,7 @@ init
 			version = "Steam";
 			break;
       case (12005376):
-			version = "Origin";
+			version = "EA";
 			break;
 	}
 }
