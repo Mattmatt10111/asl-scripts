@@ -24,7 +24,7 @@ start
 
 isLoading
 {
-    return current.loading != 0; || current.InGame == 0;
+    return current.loading != 0 || current.InGame == 0;
 }
 
 split
