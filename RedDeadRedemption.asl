@@ -2,7 +2,7 @@ state("RDR", "1.00") //1516099072
 
 
 {
-    int loading: "RDR.exe", 0x10609288;
+    int loading: "RDR.exe", 0x02C36700, 0x68;
 }
 
 
@@ -34,3 +34,5 @@ isLoading
 {
     return current.loading == 1;
 }
+
+    
