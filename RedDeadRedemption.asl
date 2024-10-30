@@ -29,11 +29,6 @@ start
 
 split
 {
-    return current.RDRautosave == "Exodus in America" && old.RDRautosave != current.RDRautosave;
-}
-
-split
-{
    return (
           //Red Dead Redemption
           (current.RDRautosave == "Exodus in America" && old.RDRautosave != current.RDRautosave) ||
@@ -101,3 +96,5 @@ isLoading
 {
     return current.loading == 1 || current.otherload == 1;
 }
+
+    
