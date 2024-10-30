@@ -6,7 +6,7 @@ state("RDR", "1.00") //1516099072
     string100 RDRautosave: "RDR.exe", 0x022F3030, 0x1542;
     //string100 UNautosave: "RDR.exe", 0x02B02FB0, 0x3262;
     byte otherload: "RDR.exe", 0x02AB3A18, 0x3071;
-    byte newgame: "RDR.exe", 0x07EEE3B8, 0x470, 0x2D18, 0x28, 0x10, 0x944;
+    byte newgame: "RDR.exe", 0x02C7F170, 0x110, 0x1058, 0x88, 0xCD0, 0x60B4;
 }
 
 startup
@@ -98,6 +98,10 @@ split
 }
 
 
+isLoading
+{
+    return current.loading == 1 || current.otherload == 1;
+}  
 isLoading
 {
     return current.loading == 1 || current.otherload == 1;
