@@ -6,13 +6,14 @@ state("RDR", "1.00") //1516099072
     string100 RDRautosave: "RDR.exe", 0x022F3030, 0x1542;
     //string100 UNautosave: "RDR.exe", 0x02B02FB0, 0x3262;
     byte otherload: "RDR.exe", 0x02AB3A18, 0x3071;
-    byte newgame: "RDR.exe", 0x02C7F170, 0x110, 0x1058, 0x88, 0xCD0, 0x60B4;
+    //byte newgame: "RDR.exe", 0x02C7F170, 0x110, 0x1058, 0x88, 0xCD0, 0x60B4;
     int duel: "RDR.exe", 0x02AB38A0, 0x6748;
+    int firstcutscene: "RDR.exe", 0x02AFE170, 0x215D4;
 }
 
 startup
 {
-    
+    refreshRate = 120;
 }
 
 
@@ -30,7 +31,7 @@ init
 
 start
 {
-    return current.newgame > 5 && old.newgame == 1 && current.loading == 1;
+    return current.firstcutscene == 0 && old.firstcutscene == 1 && current.loading == 1;
 }
 
 
