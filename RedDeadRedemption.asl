@@ -7,6 +7,7 @@ state("RDR", "1.00") //1516099072
     //string100 UNautosave: "RDR.exe", 0x02B02FB0, 0x3262;
     byte otherload: "RDR.exe", 0x02AB3A18, 0x3071;
     byte newgame: "RDR.exe", 0x02C7F170, 0x110, 0x1058, 0x88, 0xCD0, 0x60B4;
+    int duel: "RDR.exe", 0x02AB38A0, 0x6748;
 }
 
 startup
@@ -40,7 +41,7 @@ split
           (current.RDRautosave == "Exodus in America" && old.RDRautosave != current.RDRautosave) ||
           (current.RDRautosave == "New Friends, Old Problems" && old.RDRautosave != current.RDRautosave) ||
           (current.RDRautosave == "Obstacles in Our Path" && old.RDRautosave != current.RDRautosave) ||
-          (current.RDRautosave == "This is Armadillo, USA" && old.RDRautosave != current.RDRautosave) ||
+          (current.RDRautosave == "This Is Armadillo, USA" && old.RDRautosave != current.RDRautosave) ||
           (current.RDRautosave == "Women and Cattle" && old.RDRautosave != current.RDRautosave) ||
           (current.RDRautosave == "Wild Horses, Tamed Passions" && old.RDRautosave != current.RDRautosave) ||
           (current.RDRautosave == "A Tempest Looms" && old.RDRautosave != current.RDRautosave) ||
@@ -93,15 +94,12 @@ split
           (current.RDRautosave == "John Marston and Son" && old.RDRautosave != current.RDRautosave) ||
           (current.RDRautosave == "Wolves, Dogs and Sons" && old.RDRautosave != current.RDRautosave) ||
           (current.RDRautosave == "Spare the Love, Spoil the Child" && old.RDRautosave != current.RDRautosave) ||
-          (current.RDRautosave == "The Last Enemy That Shall Be Destroyed" && old.RDRautosave != current.RDRautosave)
+          (current.RDRautosave == "The Last Enemy That Shall Be Destroyed" && old.RDRautosave == "A Continual Feast") ||
+          (current.RDRautosave == "The Last Enemy That Shall Be Destroyed" && old.RDRautosave == "The Last Enemy That Shall Be Destroyed" && current.duel == 0 && old.duel == 1)
           );
 }
 
 
-isLoading
-{
-    return current.loading == 1 || current.otherload == 1;
-}  
 isLoading
 {
     return current.loading == 1 || current.otherload == 1;
