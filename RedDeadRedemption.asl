@@ -38,11 +38,6 @@ start
 
 split
 {
-    return current.onmission == 0 && old.onmission == 1 && current.failed == 0;
-}
-
-split
-{
    return (
           (current.onmission == 0 && old.onmission == 1 && current.failed == 0) ||
           (current.duel == 0 && old.duel == 1 && current.onmission == 0)
