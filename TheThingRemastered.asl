@@ -2,7 +2,7 @@ state("amun_Shipping_Steam_x64", "Steam 1.00") //14684160
 
 {
     string12 level : 0xC7D6F8;
-    bool Loading : 0xD75210;
+    int Loading : 0xC755FC;
 }
 
 init
@@ -38,5 +38,5 @@ start
 
 isLoading
 {
-    return current.Loading;
+    return current.Loading == 0;
 }
