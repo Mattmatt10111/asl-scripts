@@ -7,6 +7,7 @@ state("TheGreatCircle", "Update 1") //120745984
     string22 objective: "TheGreatCircle.exe", 0x048240E8, 0x28, 0x558, 0x1F0, 0xC0;
     string100 cutsceneid: "TheGreatCircle.exe", 0x04ABD800, 0x0;
     int InCutscene: "TheGreatCircle.exe", 0x650AFB8;
+    int loading: "TheGreatCircle.exe", 0x4AB4D90;
 }
 
 startup
@@ -44,12 +45,13 @@ split
           (current.level == "shan" && old.level == "nepa") ||
           (current.level == "sukh" && old.level == "shan") ||
           (current.level == "iraq" && old.level == "sukh") ||
-          (current.level == "iraq" && current.cutsceneid == "cs/iraq/ch06se02_washedover01_cm" && current.InCutscene == 1)
+          (current.level == "iraq" && current.cutsceneid == "cs/iraq/ch06se02_washedover01_cm" 
+          && current.InCutscene == 1)
           );
 }
 
 
 isLoading
 {
-    
+    return current.loading == 1;
 }  
