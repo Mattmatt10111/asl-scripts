@@ -95,7 +95,7 @@ split
         {
             return true;
         }
-        if (settings["vatican_inspectletter"] && current.cutsceneid == "cs/vatican/ch02se02_birdwatching01_cm")
+        if (settings["vatican_inspectletter"] && current.cutsceneid == "cs/vatican/ch02se03_inspectletter02_cm")
         {
             return true;
         }
