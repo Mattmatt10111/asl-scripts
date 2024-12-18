@@ -127,11 +127,6 @@ split
     }
 }
 
-reset
-{
-    return current.mainmenu == 1 && old.mainmenu == 0;
-}
-
 isLoading
 {
     return current.loading == 1;
