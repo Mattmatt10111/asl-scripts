@@ -4,10 +4,19 @@ state("TheGreatCircle", "Update 1 (Steam)") //120745984
 {
     string32 level: "TheGreatCircle.exe", 0x4ACF4C8;
     byte mainmenu: "TheGreatCircle.exe", 0x4AD26E7;
-    string22 objective: "TheGreatCircle.exe", 0x048240E8, 0x28, 0x558, 0x1F0, 0xC0;
     string100 cutsceneid: "TheGreatCircle.exe", 0x04ABD800, 0x0;
     int InCutscene: "TheGreatCircle.exe", 0x650AFB8;
     int loading: "TheGreatCircle.exe", 0x4AB4D90;
+}
+
+state("TheGreatCircle", "Xbox") //120168448 
+
+{
+    string32 level: "TheGreatCircle.exe", 0x4A79EC0;
+    byte mainmenu: "TheGreatCircle.exe", 0x4A7D0E7;
+    string100 cutsceneid: "TheGreatCircle.exe", 0x04A68200, 0x0;
+    int InCutscene: "TheGreatCircle.exe", 0x64B5838;
+    int loading: "TheGreatCircle.exe", 0x4A5F790;
 }
 
 startup
@@ -67,6 +76,9 @@ init
         case (120745984):
 		version = "Update 1 (Steam)";
 		break;
+        case (120168448):
+		version = "Xbox";
+		break;
 	}
 }
 
@@ -125,6 +137,11 @@ split
     {
         return true;
     }
+}
+
+reset
+{
+    return current.mainmenu == 1 && old.mainmenu == 0;
 }
 
 isLoading
