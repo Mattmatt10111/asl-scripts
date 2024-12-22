@@ -1,6 +1,6 @@
-//Settings made by  the_kovic
+// Settings made by the_kovic
 
-state("TheGreatCircle", "Update 1 (Steam)") //120745984 
+state("TheGreatCircle", "Steam (Update 1)") //120745984 
 {
     string32 level: "TheGreatCircle.exe", 0x4ACF4C8;
     byte mainmenu: "TheGreatCircle.exe", 0x4AD26E7;
@@ -9,8 +9,16 @@ state("TheGreatCircle", "Update 1 (Steam)") //120745984
     int loading: "TheGreatCircle.exe", 0x4AB4D90;
 }
 
-state("TheGreatCircle", "Xbox") //120168448 
+state("TheGreatCircle", "Steam (Update 2)") //120745984 
+{
+    string32 level: "TheGreatCircle.exe", 0x4ACE3C8;
+    byte mainmenu: "TheGreatCircle.exe", 0x4AD15E7;
+    string100 cutsceneid: "TheGreatCircle.exe", 0x04ABC700, 0x0;
+    int InCutscene: "TheGreatCircle.exe", 0x6509EB8;
+    int loading: "TheGreatCircle.exe", 0x4AB3C90;
+}
 
+state("TheGreatCircle", "Xbox Launcher") //120168448 
 {
     string32 level: "TheGreatCircle.exe", 0x4A79EC0;
     byte mainmenu: "TheGreatCircle.exe", 0x4A7D0E7;
@@ -21,7 +29,6 @@ state("TheGreatCircle", "Xbox") //120168448
 
 startup
 {
-
     settings.Add("map_splits", true, "Map Change Splits");
     settings.SetToolTip("map_splits", "Enables automatic splitting on various map changes.");
     
@@ -66,22 +73,41 @@ startup
             settings.SetToolTip("gizeh_meetvoss", "Cutscene where Indy meets Voss in the German encampment.");
         settings.Add("gizeh_carvings", false, "Gizeh (Resonance Chamber)", "cutscene_splits");
             settings.SetToolTip("gizeh_carvings", "Cutscene when Indy enters the Resonance Chamber and inspects the Adamic carvings.");
+
+    vars.gameVersion = "Unknown";
 }
 
 init
 {	
     print(modules.First().ModuleMemorySize.ToString());
-	switch (modules.First().ModuleMemorySize)
-	{
+    switch (modules.First().ModuleMemorySize)
+    {
         case (120745984):
-		version = "Update 1 (Steam)";
-		break;
+            // Test Update 1.
+            vars.gameVersion = memory.ReadString(modules.First().BaseAddress + 0x34F502F, 12);
+            if (vars.gameVersion == "umber-jasper")
+            {
+                version = "Steam (Update 1)";
+                return;
+            }
+            // Test Update 2.
+            vars.gameVersion = memory.ReadString(modules.First().BaseAddress + 0x34F2FAF, 12);
+            if (vars.gameVersion == "jasper-olive")
+            {
+                version = "Steam (Update 2)";
+                return;
+            }
+            // Can't figure it out.
+            version = "Steam (Unknown)";
+            break;
         case (120168448):
-		version = "Xbox";
-		break;
+            version = "Xbox Launcher";
+            break;
+        default:
+            version = "Unknown";
+            break;
 	}
 }
-
 
 start
 {
@@ -141,5 +167,5 @@ split
 
 isLoading
 {
-    return current.loading == 1;
+    return (current.loading == 1);
 }  
