@@ -1,4 +1,14 @@
 // Settings made by the_kovic
+state("TheGreatCircle", "Steam 1.00") //117886976
+
+{
+    string32 level: "TheGreatCircle.exe", 0x4A853B8;
+    byte mainmenu: "TheGreatCircle.exe", 0x4A885D7;
+    string100 cutsceneid: "TheGreatCircle.exe", 0x04A736F0, 0x0;
+    int InCutscene: "TheGreatCircle.exe", 0x6250C98;
+    int loading: "TheGreatCircle.exe", 0x4A6AC80;
+}
+
 
 state("TheGreatCircle", "Steam (Update 1)") //120745984 
 {
@@ -99,6 +109,9 @@ init
             }
             // Can't figure it out.
             version = "Steam (Unknown)";
+            break;
+        case (117886976):
+            version = "Steam 1.00";
             break;
         case (120168448):
             version = "Xbox Launcher";
