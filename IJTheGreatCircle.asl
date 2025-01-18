@@ -41,6 +41,8 @@ startup
 {
     settings.Add("any_percent_ending", true, "Any% autoend.");
     settings.SetToolTip("any_percent_ending", "Enables autoend for Any% category runs (split on cutscene when you grab Gina's hand).");
+    settings.Add("secret_ending", false, "100% autoend.");
+    settings.SetToolTip("secret_ending", "Enables autoend for All Ancient Relics and 100% category runs (split on cutscene when Indy open the Relic Vault door).");
 
     settings.Add("map_splits", true, "Map Change Splits");
     settings.SetToolTip("map_splits", "Enables automatic splitting on various map changes.");
@@ -79,36 +81,65 @@ startup
         // Used as map split as fallback for Any% runs in case the cutscene pointer breaks.
         settings.Add("iraq_farewell", true, "Iraq (Outro)", "map_splits");
             settings.SetToolTip("iraq_farewell", "You may not want to split here if you run All Ancient Relics or 100% category if you already split on iraq.");
-        // Split for ending All Ancient Relics or 100% category.
-        // TODO: Replace with a cutscene split when the big door is opening instead?
-        settings.Add("antarctica_outro", true, "Antarctica (Secret Ending)", "map_splits");
-            settings.SetToolTip("antarctica_outro", "Enable if you run All Ancient Relics or 100% category.");
 
     settings.Add("cutscene_splits", false, "Cutscene Splits");
     settings.SetToolTip("cutscene_splits", "Enables automatic splitting on various cutscenes.");
 
+        settings.Add("vatican_camera", false, "Vatican (Camera)", "cutscene_splits");
+            settings.SetToolTip("vatican_camera", "Cutscene when Indy finds the Camera merchant.");
+        settings.Add("vatican_wine", false, "Vatican (Wine)", "cutscene_splits");
+            settings.SetToolTip("vatican_wine", "Cutscene when Indy and Antonio examine the photos and Antonio gives Indy a wine bottle.");
         settings.Add("vatican_birdwatching", false, "Vatican (Window Skip)", "cutscene_splits");
             settings.SetToolTip("vatican_birdwatching", "Cutscene when Voss arrives via airship and Indy spies on him with binoculars (after performing Window Skip).");
+        settings.Add("vatican_ginaappears", false, "Vatican (Gina Fountain)", "cutscene_splits");
+            settings.SetToolTip("vatican_ginaappears", "Cutscene when Gina appears at the Fountain of Confession and spooks Indy.");
         settings.Add("vatican_inspectletter", false, "Vatican (Trial Skip)", "cutscene_splits");
             settings.SetToolTip("vatican_inspectletter", "Cutscene when Indy investigates letter in Vatican secret library (after performing Trial Skip and interacting with letter through the wall).");
         settings.Add("gizeh_stonetablets", false, "Gizeh (Blue Tent)", "cutscene_splits");
             settings.SetToolTip("gizeh_stonetablets", "Cutscene when Indy can exit the Blue Tent.");
         settings.Add("gizeh_lighter", false, "Gizeh (Lighter)", "cutscene_splits");
             settings.SetToolTip("gizeh_lighter", "Cutscene when Indy finds the Lighter merchant.");
+        settings.Add("gizeh_sanctuary_entry", false, "Gizeh (Sanctuary of the Guardians Entry)", "cutscene_splits");
+            settings.SetToolTip("gizeh_sanctuary_entry", "Cutscene when Indy and Gina enter the Sanctuary of the Guardians.");
+        settings.Add("gizeh_sanctuary_exit", false, "Gizeh (Sanctuary of the Guardians Exit)", "cutscene_splits");
+            settings.SetToolTip("gizeh_sanctuary_exit", "Cutscene when Indy and Gina exit the Sanctuary of the Guardians."); 
         settings.Add("gizeh_meetvoss", false, "Gizeh (Meet Voss)", "cutscene_splits");
             settings.SetToolTip("gizeh_meetvoss", "Cutscene where Indy meets Voss in the German encampment.");
+        settings.Add("gizeh_escape", false, "Gizeh (Camp Escape)", "cutscene_splits");
+            settings.SetToolTip("gizeh_escape", "Cutscene when Indy escapes the dig site with Nawal.");
         settings.Add("gizeh_carvings", false, "Gizeh (Resonance Chamber)", "cutscene_splits");
             settings.SetToolTip("gizeh_carvings", "Cutscene when Indy enters the Resonance Chamber and inspects the Adamic carvings.");
+        settings.Add("sukhothai_rebreather", false, "Sukhothai (Rebreather)", "cutscene_splits");
+            settings.SetToolTip("sukhothai_rebreather", "Cutscene when Indy finds the Rebreather merchant.");
+        settings.Add("sukhothai_pyramid_entry", false, "Sukhothai (Pyramid Entry)", "cutscene_splits");
+            settings.SetToolTip("sukhothai_pyramid_entry", "Cutscene when Indy and Gina find the Hidden Pyramid.");
+        settings.Add("sukhothai_pyramid_exit", false, "Sukhothai (Pyramid Exit)", "cutscene_splits");
+            settings.SetToolTip("sukhothai_pyramid_exit", "Cutscene when Indy and Gina leave the Hidden Pyramid.");
+        settings.Add("sukhothai_pailin", false, "Sukhothai (A Study in Fear)", "cutscene_splits");
+            settings.SetToolTip("sukhothai_pailin", "Cutscene when Indy receives the A Study in Fear quest from Pailin.");
+        settings.Add("sukhothai_stone", false, "Sukhothai (Stone Temple)", "cutscene_splits");
+            settings.SetToolTip("sukhothai_stone", "Cutscene when Indy and Gina find the entrance to the Stone Temple.");
 
     // Map cutscene settings to their respective cutscene IDs.
     vars.cutsceneMappings = new Dictionary<string, string>
     {
+        {"vatican_camera", "de/vatican/ch02al01_ernestotalk01_de"},
+        {"vatican_wine", "cs/vatican/ch02se02_sacredwounds02_cm"},
         {"vatican_birdwatching", "cs/vatican/ch02se02_birdwatching01_cm"},
+        {"vatican_ginaappears", "cs/vatican/ch02se03_ginaappears01_cm"},
         {"vatican_inspectletter", "cs/vatican/ch02se03_inspectletter02_cm"},
         {"gizeh_stonetablets", "cs/gizeh/ch03se01_stonetablets02_cm"},
         {"gizeh_lighter", "de/gizeh/ch03al01_asmaatalk01_de"},
+        {"gizeh_sanctuary_entry", "pe/gizeh/ch03la02_lever01_pe"},
+        {"gizeh_sanctuary_exit", "cs/gizeh/ch03la02_leavingcave02_cm"},
         {"gizeh_meetvoss", "cs/gizeh/ch03se02_meetvoss02_cm"},
-        {"gizeh_carvings", "cs/gizeh/ch03se03_carvings01_cm"}
+        {"gizeh_escape", "cs/gizeh/ch03se02_exitdigsite01_cm"},
+        {"gizeh_carvings", "cs/gizeh/ch03se03_carvings01_cm"},
+        {"sukhothai_rebreather", "de/sukhothai/ch05al01_tongdangtalk01_de"},
+        {"sukhothai_pyramid_entry", "cs/sukhothai/ch05se02_enterarchive01_cm"},
+        {"sukhothai_pyramid_exit", "cs/sukhothai/ch05se02_mediator01_cm"},
+        {"sukhothai_pailin", "de/sukhothai/ch05la02_pailinexplosion02_de"},
+        {"sukhothai_stone", "cs/sukhothai/ch05se03_tunnel02_cm"}
     };
 
     vars.gameVersion = "Unknown";
@@ -181,6 +212,12 @@ split
 
     // Game end for Any%.
     if (settings["any_percent_ending"] && current.level == "iraq_lake" && current.cutsceneid == "cs/iraq/ch06se02_washedover01_cm" && current.InCutscene == 1)
+    {
+        return true;
+    }
+
+    // Game end for All Ancient Relics and 100%.
+    if (settings["secret_ending"] && current.level == "iraq" && current.cutsceneid == "cs/iraq/ch06se02_endoftheworld02_cm" && current.InCutscene == 1)
     {
         return true;
     }
