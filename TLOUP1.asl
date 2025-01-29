@@ -184,6 +184,70 @@ state("tlou-i", "1.1.3.1") //140333056
     string27 escapefromlib:             0x04726878, 0x4A;
 }
 
+state("tlou-i", "1.1.4.0") //138694656
+
+
+{ 
+    int      loading:     "tlou-i.exe", 0x642A860;
+    int      health:      "tlou-i.exe", 0x5ED031C;
+    byte     inCutscene:  "tlou-i.exe", 0x068EEF58, 0xC9;
+    int      mainmenu:    "tlou-i.exe", 0x35D8CE8;
+    int      fps:         "tlou-i.exe", 0x671D128;
+    double   IGT:         "tlou-i.exe", 0x04753B80, 0x80, 0x978;
+    byte     timerpaused: "tlou-i.exe", 0x6427E88, 0x000288E9;
+    byte     blackscreen: "tlou-i.exe", 0x68E9800;
+    string13 chapter:                   0x04726AF8, 0x2C;
+    // Main Game
+    // Hometown
+    string8  prologue:                  0x04726AF8, 0x37;
+    // The Quarentine Zone
+    string14 twentyyearslater:          0x04726AF8, 0x42;
+    string15 beyondthewall:             0x04726AF8, 0x42;
+    string9  theslums:                  0x04726AF8, 0x42;
+    string9  thecargo:                  0x04726AF8, 0x42;
+    // The Outskirts
+    string7  outside:                   0x04726AF8, 0x3C;
+    string8  downtown:                  0x04726AF8, 0x3C;
+    string6  museum:                    0x04726AF8, 0x3C;
+    string20 capitol:                   0x04726AF8, 0x3C;
+    // Bill's Town
+    string9  thewoods:                  0x04726AF8, 0x3A;
+    string9  safehouse:                 0x04726AF8, 0x3A;
+    string9  graveyard:                 0x04726AF8, 0x3A;
+    string18 highschool:                0x04726AF8, 0x3A;
+    // Pittsburgh
+    string18 aloneandforsaken:          0x04726AF8, 0x39;
+    string11 hotel:                     0x04726AF8, 0x39;
+    string18 financial:                 0x04726AF8, 0x39;
+    string15 escapethecity:             0x04726AF8, 0x39;
+    // The Suburbs
+    string6  sewers:                    0x04726AF8, 0x3A;
+    string7  suburbs:                   0x04726AF8, 0x3A;
+    // Tommy's Dam
+    string17 dam:                       0x04726AF8, 0x3A;
+    string11 ranch:                     0x04726AF8, 0x3A;
+    // The University
+    string12 bighorns:                  0x04726AF8, 0x3D;
+    string16 sciencebuilding:           0x04726AF8, 0x3D;
+    // Lakeside Resort
+    string8  thehunt:                   0x04726AF8, 0x3E;
+    string12 cabinresort:               0x04726878, 0x3E;
+    // Bus Depot
+    string12 highway:                   0x04726AF8, 0x38;
+    string18 tunnel:                    0x04726AF8, 0x38;
+    // The Firefly Lab
+    string12 hospital:                  0x04726AF8, 0x3E;
+    // Jackson
+    string8  epilogue:                  0x04726AF8, 0x36;
+    // Left Behind
+    string15 backinaflash:              0x04726AF8, 0x3E;
+    string8  mallrats:                  0x04726AF8, 0x37;
+    string8  soclose:                   0x04726AF8, 0x37;
+    string13 funandgames:               0x04726AF8, 0x3C;
+    string21 enemyofmyenemy:            0x04726AF8, 0x44;
+    string27 escapefromlib:             0x04726AF8, 0x4A;
+}
+
 
 startup
 {
@@ -220,6 +284,9 @@ init
 			break;
         case (140333056):
 			version = "1.1.3.1";
+			break;
+        case (138694656):
+			version = "1.1.4.0";
 			break;
 	}
 }
