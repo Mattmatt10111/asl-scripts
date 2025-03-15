@@ -3,6 +3,7 @@ state("SplitFiction", "1.00 Steam") //283611136
 {
     string100 chapter: "SplitFiction.exe", 0x0FB6D720, 0x60C8, 0x0;
     int loading: "SplitFiction.exe", 0xFAD0888;
+    string100 mainmenu: "SplitFiction.exe", 0x0F5B22F8, 0x11818, 0x9F;
 }
 
 startup
@@ -35,7 +36,7 @@ init
 
 start
 {
-    return current.chapter == "Freedom Fighters";
+    return current.chapter == "Freedom Fighters" && old.mainmenu == "MainMenu";
 }
 
 split
