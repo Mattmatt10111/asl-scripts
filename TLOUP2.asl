@@ -10,9 +10,9 @@ state("tlou-ii", "v1.1.10411.0746") //161869824
 state("tlou-ii", "v1.2.10416.0553") //BECA4C2311BE02CF0062C7A21519B935 
 
 {
-    double   IGT:                          "tlou-ii.exe", 0x093952E0, 0x80, 0xBA8;
-    string18 chapter:                    "tlou-ii.exe", 0x09341F80, 0x2C;
-    string15 chapterreset:               "tlou-ii.exe", 0x09341F80, 0x2C;
+    double   IGT:                       "tlou-ii.exe", 0x093952E0, 0x80, 0xBA8;
+    string18 chapter:                   "tlou-ii.exe", 0x09341F80, 0x2C;
+    string15 chapterreset:              "tlou-ii.exe", 0x09341F80, 0x2C;
     // Jackson
     string8  prologue:                  "tlou-ii.exe", 0x09341F80, 0x36;
     string9  wakingup:                  "tlou-ii.exe", 0x09341F80, 0x36;
