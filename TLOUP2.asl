@@ -24,12 +24,12 @@ state("tlou-ii", "v1.2.10416.0553") //BECA4C2311BE02CF0062C7A21519B935
     // Seattle Day 1 Ellie
     string8  thegate:                   "tlou-ii.exe", 0x09341F80, 0x3C;
     string8  downtown:                  "tlou-ii.exe", 0x09341F80, 0x3C;
-    string20 eastbrookelementary:       "tlou-ii.exe", 0x09341F80, 0x3C;
+    string21 eastbrookelementary:       "tlou-ii.exe", 0x09341F80, 0x3C;
     string12 capitolhill:               "tlou-ii.exe", 0x09341F80, 0x3C;
     string10 channel13:                 "tlou-ii.exe", 0x09341F80, 0x3C;
     string11 thetunnels:                "tlou-ii.exe", 0x09341F80, 0x3C;
     string11 thetheater:                "tlou-ii.exe", 0x09341F80, 0x3C;
-    string9  thebirthdaygift:           "tlou-ii.exe", 0x09341F80, 0x3C;
+    string17  thebirthdaygift:           "tlou-ii.exe", 0x09341F80, 0x3C;
     // Seattle Day 2 Ellie
     string9  hillcrest:                 "tlou-ii.exe", 0x09341F80, 0x3C;
     string15 findingstrings:            "tlou-ii.exe", 0x09341F80, 0x3C;
@@ -51,23 +51,23 @@ state("tlou-ii", "v1.2.10416.0553") //BECA4C2311BE02CF0062C7A21519B935
     string10 theforest:                 "tlou-ii.exe", 0x09341F80, 0x3C;
     string9  thecoast:                  "tlou-ii.exe", 0x09341F80, 0x3C;
     // Seattle Day 2 Abby
-    string21 returntothecoast:          "tlou-ii.exe", 0x09341F80, 0x3C;
+    string19 returntothecoast:          "tlou-ii.exe", 0x09341F80, 0x3C;
     string12 theshortcut:               "tlou-ii.exe", 0x09341F80, 0x3C;
     string11 thedescent:                "tlou-ii.exe", 0x09341F80, 0x3C;
     string11 groundzero:                "tlou-ii.exe", 0x09341F80, 0x3C;
     string22 returntotheaquarium:       "tlou-ii.exe", 0x09341F80, 0x3C;
     // Seattle Day 3 Abby
-    string9  themarina:                 "tlou-ii.exe", 0x09341F80, 0x3C;
-    string9  theisland:                 "tlou-ii.exe", 0x09341F80, 0x3C;
-    string9  theescape:                 "tlou-ii.exe", 0x09341F80, 0x3C;
-    string16 theconfrontation:          "tlou-ii.exe", 0x09341F80, 0x3C;
+    string10  themarina:                 "tlou-ii.exe", 0x09341F80, 0x3C;
+    string10  theisland:                 "tlou-ii.exe", 0x09341F80, 0x3C;
+    string10  theescape:                 "tlou-ii.exe", 0x09341F80, 0x3C;
+    string17 theconfrontation:          "tlou-ii.exe", 0x09341F80, 0x3C;
     // The Farm
-    string7  thefarm:                   "tlou-ii.exe", 0x09341F80, 0x37;
+    string8  thefarm:                   "tlou-ii.exe", 0x09341F80, 0x37;
     // Santa Barbara
     string14 constance:                 "tlou-ii.exe", 0x09341F80, 0x3C;
-    string14 pushinginland:             "tlou-ii.exe", 0x09341F80, 0x3C;
-    string9  theresort:                 "tlou-ii.exe", 0x09341F80, 0x3C;
-    string8  thebeach:                  "tlou-ii.exe", 0x09341F80, 0x3C;
+    string15 pushinginland:             "tlou-ii.exe", 0x09341F80, 0x3C;
+    string10  theresort:                 "tlou-ii.exe", 0x09341F80, 0x3C;
+    string9  thebeach:                  "tlou-ii.exe", 0x09341F80, 0x3C;
     // The Farm
     string8  epilogue:                  "tlou-ii.exe", 0x09341F80, 0x37;
 
@@ -147,14 +147,14 @@ split
         (current.packingup == "Packing Up" && old.thechalet == "The Chalet") ||
         (current.thegate == "The Gate" && old.packingup == "Packing Up") ||
         (current.downtown == "Downtown" && old.thegate == "The Gate" ) ||
-        (current.eastbrookelementary == "East Brook Elementary" && old.downtown == "Downtown") ||
-        (current.capitolhill == "Capitol Hill" && old.eastbrookelementary == "East Brook Elementary") ||
+        (current.eastbrookelementary == "Eastbrook Elementary" && old.downtown == "Downtown") ||
+        (current.capitolhill == "Capitol Hill" && old.eastbrookelementary == "Eastbrook Elementary") ||
         (current.channel13 == "Channel 13" && old.capitolhill == "Capitol Hill") ||
         (current.thetunnels == "The Tunnels" && old.channel13 == "Channel 13") ||
         (current.thetheater == "The Theater" && old.thetunnels == "The Tunnels") ||
         (current.thebirthdaygift == "The Birthday Gift" && old.thetheater == "The Theater") ||
-        (current.hillcrest == "Hill Crest" && old.thebirthdaygift == "The Birthday Gift") ||
-        (current.findingstrings == "Finding Strings" && old.hillcrest == "Hill Crest") ||
+        (current.hillcrest == "Hillcrest" && old.thebirthdaygift == "The Birthday Gift") ||
+        (current.findingstrings == "Finding Strings" && old.hillcrest == "Hillcrest") ||
         (current.theseraphites == "The Seraphites" && old.findingstrings == "Finding Strings") ||
         (current.stmaryhospital == "St. Mary's Hospital" && old.theseraphites == "The Seraphites") ||
         (current.roadtotheaquarium == "Road To The Aquarium" && old.stmaryhospital == "St. Mary's Hospital") ||
@@ -180,8 +180,8 @@ split
         (current.theconfrontation == "The Confrontation" && old.theescape == "The Escape") ||
         (current.thefarm == "The Farm" && old.theconfrontation == "The Confrontation") ||
         (current.constance == "2425 Constance" && old.thefarm == "The Farm") ||
-        (current.pushinginland == "Pushing In Land" && old.constance == "2425 Constance") ||
-        (current.theresort == "The Resort" && old.pushinginland == "Pushing In Land") ||
+        (current.pushinginland == "Pushing Inland" && old.constance == "2425 Constance") ||
+        (current.theresort == "The Resort" && old.pushinginland == "Pushing Inland") ||
         (current.thebeach == "The Beach" && old.theresort == "The Resort") ||
         (current.epilogue == "Epilogue" && old.thebeach == "The Beach")
       );  
