@@ -75,8 +75,8 @@ state("tlou-ii", "v1.2.10416.0553") //BECA4C2311BE02CF0062C7A21519B935
 
 startup
 {
-    Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Basic");
     vars.totalGameTime = 0;
+    Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Basic");
     if (timer.CurrentTimingMethod == TimingMethod.RealTime)
 // Asks user to change to game time if LiveSplit is currently set to Real Time.
     {        
@@ -93,11 +93,14 @@ startup
             timer.CurrentTimingMethod = TimingMethod.GameTime;
         }
     }
-    refreshRate = 60;
+    refreshRate = 120;
 }
 
 init
 {
+    vars.hasRunStarted = false;
+    vars.lastValidIGT = 0.0;
+    vars.adjustedTime = 0.0;
     print(modules.First().ModuleMemorySize.ToString());
     timer.IsGameTimePaused = false;
     string md5 = "";
@@ -124,11 +127,48 @@ init
 
 update
 {
-    if (timer.CurrentPhase == TimerPhase.NotRunning)
+    if (timer.CurrentTime.RealTime != null && timer.CurrentTime.RealTime.Value.TotalSeconds <= 0.005)
     {
-	vars.totalGameTime = 0;
+        vars.hasRunStarted = false;
+        vars.adjustedTime = 0.0;
+        vars.lastValidIGT = 0.0;
+        return;
+    }
+
+    if (!vars.hasRunStarted && current.IGT > 0)
+    {
+        vars.hasRunStarted = true;
+    }
+
+    if (vars.hasRunStarted)
+    {
+        if (current.IGT > old.IGT)
+        {
+            vars.adjustedTime += current.IGT - old.IGT;
+            vars.lastValidIGT = current.IGT;
+        }
+
+        if (current.IGT < old.IGT)
+        {
+            vars.lastValidIGT = 0.0;
+        }
+
+        timer.IsGameTimePaused = current.IGT <= old.IGT;
+    }
+    else
+    {
+        timer.IsGameTimePaused = true;
     }
 }
+
+
+
+
+reset
+{
+    vars.hasRunStarted = false;
+}
+
 
 start
 {
@@ -157,8 +197,8 @@ split
         (current.findingstrings == "Finding Strings" && old.hillcrest == "Hillcrest") ||
         (current.theseraphites == "The Seraphites" && old.findingstrings == "Finding Strings") ||
         (current.stmaryhospital == "St. Mary's Hospital" && old.theseraphites == "The Seraphites") ||
-        (current.roadtotheaquarium == "Road To The Aquarium" && old.stmaryhospital == "St. Mary's Hospital") ||
-        (current.thefloodedcity == "The Flooded City" && old.roadtotheaquarium == "Road To The Aquarium") ||
+        (current.roadtotheaquarium == "Road to the Aquarium" && old.stmaryhospital == "St. Mary's Hospital") ||
+        (current.thefloodedcity == "The Flooded City" && old.roadtotheaquarium == "Road to the Aquarium") ||
         (current.infiltration == "Infiltration" && old.thefloodedcity == "The Flooded City") ||
         (current.trackinglesson == "Tracking Lesson" && old.infiltration == "Infiltration") ||
         (current.thestadium == "The Stadium" && old.trackinglesson == "Tracking Lesson") ||
@@ -169,12 +209,12 @@ split
         (current.wintervisit == "Winter Visit" && old.hostileterritory == "Hostile Territory") ||
         (current.theforest == "The Forest" && old.wintervisit == "Winter Visit") ||
         (current.thecoast == "The Coast" && old.theforest == "The Forest") ||
-        (current.returntothecoast == "Return To The Coast" && old.thecoast == "The Coast") ||
-        (current.theshortcut == "The Shortcut" && old.returntothecoast == "Return To The Coast") ||
+        (current.returntothecoast == "Return to the Coast" && old.thecoast == "The Coast") ||
+        (current.theshortcut == "The Shortcut" && old.returntothecoast == "Return to the Coast") ||
         (current.thedescent == "The Descent" && old.theshortcut == "The Shortcut") ||
         (current.groundzero == "Ground Zero" && old.thedescent == "The Descent") ||
-        (current.returntotheaquarium == "Return To The Aquarium" && old.groundzero == "Ground Zero") ||
-        (current.themarina == "The Marina" && old.returntotheaquarium == "Return To The Aquarium") ||
+        (current.returntotheaquarium == "Return to the Aquarium" && old.groundzero == "Ground Zero") ||
+        (current.themarina == "The Marina" && old.returntotheaquarium == "Return to the Aquarium") ||
         (current.theisland == "The Island" && old.themarina == "The Marina") ||
         (current.theescape == "The Escape" && old.theisland == "The Island") ||
         (current.theconfrontation == "The Confrontation" && old.theescape == "The Escape") ||
@@ -187,10 +227,6 @@ split
       );  
 }
 
-//reset
-//{
-//    return current.chapterreset == "NEW MANUAL SAVE" && current.IGT == 0;
-//}
 
 exit
 {
@@ -204,14 +240,5 @@ isLoading
 
 gameTime
 {
-    if (current.IGT > old.IGT)
-    {
-        return TimeSpan.FromSeconds(vars.totalGameTime + current.IGT);
-    }
-
-    if (current.IGT == 0 && old.IGT > 0)
-    {
-        vars.totalGameTime += old.IGT;
-        return TimeSpan.FromSeconds(vars.totalGameTime + current.IGT);
-    }
+    return TimeSpan.FromSeconds(vars.adjustedTime);
 }
