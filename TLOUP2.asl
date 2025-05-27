@@ -1,5 +1,4 @@
 state("tlou-ii", "v1.1.10411.0746") //161869824 
-
 {
     double IGT: "tlou-ii.exe", 0x09395260, 0x80, 0xBA8;
     string18 chapter: "tlou-ii.exe", 0x09341A30, 0x2C;
@@ -8,7 +7,6 @@ state("tlou-ii", "v1.1.10411.0746") //161869824
 }
 
 state("tlou-ii", "v1.2.10416.0553") //BECA4C2311BE02CF0062C7A21519B935 
-
 {
     double   IGT:                       "tlou-ii.exe", 0x093952E0, 0x80, 0xBA8;
     string18 chapter:                   "tlou-ii.exe", 0x09341F80, 0x2C;
@@ -73,8 +71,6 @@ state("tlou-ii", "v1.2.10416.0553") //BECA4C2311BE02CF0062C7A21519B935
 }
 
 state("tlou-ii", "v1.3.10430.0406") //161878016
-
-
 {
     double   IGT:                       "tlou-ii.exe", 0x09397360, 0x80, 0xBA8;
     string18 chapter:                   "tlou-ii.exe", 0x09343FE0, 0x2C;
@@ -138,6 +134,71 @@ state("tlou-ii", "v1.3.10430.0406") //161878016
     string8  epilogue:                  "tlou-ii.exe", 0x09343FE0, 0x37;
 }
 
+state("tlou-ii", "v1.4.10515.0636")  //161902592
+{ 
+
+    double   IGT:                       "tlou-ii.exe", 0x0939C360, 0x80, 0xBA8;
+    string18 chapter:                   "tlou-ii.exe", 0x09348FE0, 0x2C;
+    string15 chapterreset:              "tlou-ii.exe", 0x09348FE0, 0x2C;
+    // Jackson
+    string8  prologue:                  "tlou-ii.exe", 0x09348FE0, 0x36;
+    string9  wakingup:                  "tlou-ii.exe", 0x09348FE0, 0x36;
+    string12 theoverlook:               "tlou-ii.exe", 0x09348FE0, 0x36;
+    string6  patrol:                    "tlou-ii.exe", 0x09348FE0, 0x36;
+    string9  thehorde:                  "tlou-ii.exe", 0x09348FE0, 0x36;
+    string10 thechalet:                 "tlou-ii.exe", 0x09348FE0, 0x36;
+    string10 packingup:                 "tlou-ii.exe", 0x09348FE0, 0x36;
+    // Seattle Day 1 Ellie
+    string8  thegate:                   "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string8  downtown:                  "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string21 eastbrookelementary:       "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string12 capitolhill:               "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string10 channel13:                 "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string11 thetunnels:                "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string11 thetheater:                "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string17  thebirthdaygift:           "tlou-ii.exe", 0x09348FE0, 0x3C;
+    // Seattle Day 2 Ellie
+    string9  hillcrest:                 "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string15 findingstrings:            "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string14 theseraphites:             "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string19 stmaryhospital:            "tlou-ii.exe", 0x09348FE0, 0x3C;
+    // Seattle Day 3 Ellie
+    string20 roadtotheaquarium:         "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string16 thefloodedcity:            "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string12 infiltration:              "tlou-ii.exe", 0x09348FE0, 0x3C;
+    // The Park
+    string15 trackinglesson:            "tlou-ii.exe", 0x09348FE0, 0x37;
+    // Seattle Day 1 Abby
+    string11 thestadium:                "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string7  onfoot:                    "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string16 theforwardbase:            "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string12 theaquarium:               "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string17 hostileterritory:          "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string12 wintervisit:               "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string10 theforest:                 "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string9  thecoast:                  "tlou-ii.exe", 0x09348FE0, 0x3C;
+    // Seattle Day 2 Abby
+    string19 returntothecoast:          "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string12 theshortcut:               "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string11 thedescent:                "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string11 groundzero:                "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string22 returntotheaquarium:       "tlou-ii.exe", 0x09348FE0, 0x3C;
+    // Seattle Day 3 Abby
+    string10  themarina:                 "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string10  theisland:                 "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string10  theescape:                 "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string17 theconfrontation:          "tlou-ii.exe", 0x09348FE0, 0x3C;
+    // The Farm
+    string8  thefarm:                   "tlou-ii.exe", 0x09348FE0, 0x37;
+    // Santa Barbara
+    string14 constance:                 "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string15 pushinginland:             "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string10  theresort:                 "tlou-ii.exe", 0x09348FE0, 0x3C;
+    string9  thebeach:                  "tlou-ii.exe", 0x09348FE0, 0x3C;
+    // The Farm
+    string8  epilogue:                  "tlou-ii.exe", 0x09348FE0, 0x37;
+}
+
 startup
 {
     vars.totalGameTime = 0;
@@ -187,6 +248,9 @@ init
 			break;
         case (161878016):
 			version = "v1.3.10430.0406";
+			break;
+        case (161902592):
+			version = "v1.4.10515.0636";
 			break;
 	}   
         break;
