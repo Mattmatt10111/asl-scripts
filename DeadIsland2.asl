@@ -23,6 +23,16 @@ state("DeadIsland-Win64-Shipping", "1.1103923.0.1") //466284544
     int       inCutscene    : 0x07560730, 0x30, 0x600, 0x128, 0xC0, 0x48;
 }
 
+state("DeadIsland-Win64-Shipping", "1.1231387.0.1") //447283200 
+
+
+{
+    string20  queststring   : 0x06E6B5D8, 0xD8, 0x20, 0xA8, 0x60, 0x390, 0x70, 0x84C;
+    int       questtotal    : 0x06E91650, 0x30, 0x738, 0x28, 0x30, 0x68, 0x78;
+    byte      loading       : 0x06E91650, 0x30, 0x8D0, 0x68;
+    int       inCutscene    : 0x06E91650, 0x30, 0x5A8, 0x128, 0xB8, 0x48;
+}
+
 startup
 {
     refreshRate = 30;
@@ -51,6 +61,9 @@ init
         case (466284544):
 			version = "1.1103923.0.1";
 			break;
+        case (447283200):
+			version = "1.1231387.0.1";
+			break;
 	}
 }
 
@@ -59,6 +72,7 @@ start
     return 
      current.questtotal == 0 && current.queststring == "FLIGHT OF THE DAMNED" && current.inCutscene == 0;
 }
+
 
 split
 {
