@@ -8,7 +8,7 @@ state("Spider-Man2", "1.318.1.0") //216711168
 
 state("Spider-Man2", "2.727.0.0") //218533888
 {
-    byte loading: 0xBB8DA5C;
+    byte loading: "Spider-Man2.exe", 0xBB8DA5C;
 }
 
 startup
