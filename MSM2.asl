@@ -1,7 +1,8 @@
 state("Spider-Man2", "1.318.1.0") //216711168
 {
-    byte loading: 0xBA4ECD5;
-    string100 mission: 0x0AF34D18, 0x11788;
+   	byte loading:    "Spider-Man2.exe", 0xBA4ECD5;
+    //int levelpopup: "Spider-Man2.exe", 0x09F04310, 0x747C;
+    string100 mission: "Spider-Man2.exe", 0x0AF34D18, 0x11788;
 }
 
 state("Spider-Man2", "2.810.0.0") //218533888
