@@ -46,7 +46,7 @@ startup
     settings.Add("1", false, "Act 1", "Splits");
     settings.Add("2", false, "Act 2", "Splits");
     settings.Add("3", false, "Act 3", "Splits");
-    timer.Run.Metadata.SetCustomVariable("Auto Splitter Version", vars.AutoSplitterVersion);
+    timer.Run.Metadata.SetCustomVariable("Auto Splitter Version", vars.Version);
     
     vars.CompletedSplits = new List<string>();
     vars.splits = new Dictionary<string, List<uint>>() {
