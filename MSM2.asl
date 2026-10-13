@@ -1,20 +1,20 @@
 state("Spider-Man2", "1.318.1.0") //216711168
 {
-   	byte loading:    "Spider-Man2.exe", 0xBA4ECD5;
+    byte loading: 0xBA4ECD5;
     //int levelpopup: "Spider-Man2.exe", 0x09F04310, 0x747C;
-    string100 mission: "Spider-Man2.exe", 0x0AF34D18, 0x11788;
+    string100 mission: 0x0AF34D18, 0x11788;
 }
 
 state("Spider-Man2", "2.810.0.0") //218533888
 {
     int SaveIconLoad: 0xBB8DA9C; // goes to 1 during loading screens typically with a save icon but also restart checkpoints, 0 for the rest
     //int BlackScreenLoad: 0xC505B84; // 2 during cutscene and loads it seems like and 1 for regular gameplay no idea when its 0
-    int BlackScreenLoad: 0xBB8AFB8; // 0 during loading 1 when not
+    byte BlackScreenLoad: 0xBB8AFB8; // 0 during loading 1 when not
     //int playerold: 0x9B2473C; // 256 when you are the player 243 in pause menu
     int player: 0xBB8AB70; // 256/257 during load 1 during gameplay 0 idk
     int playerbackup: 0xBC0B674; // 1 when not loading 257 when loading 0 idk
     int Loading: "Spider-Man2", 0xC31F368; // 1 and 256 when loading 0 when not
-    int cityLoad: 0xB0CBFF0; // 1 during a city load 0 when not
+    byte cityLoad: 0xB8A49D5; // 1 during a city load 0 when not
     int photoMode: 0xA164484; // 1 when in photo mode 0 when not
     bool mainMenu: 0xB3E2608; // 1 in the main menu of the game 0 when not
     uint Objective1: 0xB8B28C8; // 0 until after u defeat marko then its 1967938939 goes to 3987438430 after u use the spidey drone thingy with miles, 3757259262 when the app gets updated, 979019534 mission after marko crystal, 3892465476 completed one thing at a time
@@ -40,13 +40,14 @@ startup
     }
 
     vars.Version = "";
+    vars.AutoSplitterVersion = "1.0.5";
 
     settings.Add("Debug", false);
     settings.Add("Splits", false);
     settings.Add("1", false, "Act 1", "Splits");
     settings.Add("2", false, "Act 2", "Splits");
     settings.Add("3", false, "Act 3", "Splits");
-    timer.Run.Metadata.SetCustomVariable("Auto Splitter Version", vars.Version);
+    timer.Run.Metadata.SetCustomVariable("Auto Splitter Version", vars.AutoSplitterVersion);
     
     vars.CompletedSplits = new List<string>();
     vars.splits = new Dictionary<string, List<uint>>() {
@@ -115,6 +116,24 @@ update
     current.XCoord = Math.Round(current.XCoord, 4);
     current.YCoord = Math.Round(current.YCoord, 4);
     current.ZCoord = Math.Round(current.ZCoord, 4);
+
+    /*print("XCoord: " + current.XCoord.ToString());
+    print("YCoord: " + current.YCoord.ToString());
+    print("ZCoord: " + current.ZCoord.ToString());
+
+    if (current.XCoord != old.XCoord)
+    {
+        print("XCoord: " + current.XCoord.ToString());
+        print("YCoord: " + current.YCoord.ToString());
+        print("ZCoord: " + current.ZCoord.ToString());
+    }*/
+    timer.Run.Metadata.SetCustomVariable("Objective", current.Objective1.ToString());
+    timer.Run.Metadata.SetCustomVariable("XYZ", "(" + current.XCoord.ToString() + "," + current.YCoord.ToString() + "," + current.ZCoord.ToString() + ")");
+    timer.Run.Metadata.SetCustomVariable("SaveIconLoad", current.SaveIconLoad.ToString());
+    timer.Run.Metadata.SetCustomVariable("BlackScreenLoad", current.BlackScreenLoad.ToString());
+    timer.Run.Metadata.SetCustomVariable("Player", current.player.ToString());
+    timer.Run.Metadata.SetCustomVariable("PlayerBackup", current.playerbackup.ToString());
+    timer.Run.Metadata.SetCustomVariable("Loading", current.Loading.ToString());
 }
 
 start
@@ -182,14 +201,23 @@ isLoading
     if ((current.SaveIconLoad == 1 || current.BlackScreenLoad != 1 || current.player != 1 || current.playerbackup != 1 || current.cityLoad == 1) &&
     current.mainMenu == false && current.playerbackup != 65537 && current.photoMode != 1 && vars.Version == "2.810.0.0")
     {
+        if (settings["Debug"])
+        {
+            print("Loading: " + current.SaveIconLoad.ToString() + " BlackScreenLoad: " + current.BlackScreenLoad.ToString() + 
+            " Player: " + current.player.ToString() 
+            + " PlayerBackup: " + current.playerbackup.ToString() + " cityLoad: " + current.cityLoad.ToString()
+            + " mainMenu: " + current.mainMenu.ToString() + " photoMode: " + current.photoMode.ToString());
+        }
         return true;
-    } else if(vars.version == "1.318.1.0" && current.loading == 1)
+    } else if(vars.Version == "1.318.1.0" && current.loading == 1)
     {
         return true;
     } else
     {
         return false;
     } 
+
+    //return current.Loading == 1 || current.Loading == 256 || current.player == 256 || current.player == 257 || current.playerbackup == 256 || current.playerbackup == 257;
 }
 
 onReset
