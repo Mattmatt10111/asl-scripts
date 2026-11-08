@@ -8,12 +8,9 @@ state("Spider-Man2", "1.318.1.0") //216711168
 state("Spider-Man2", "2.810.0.0") //218533888
 {
     int SaveIconLoad: 0xBB8DA9C; // goes to 1 during loading screens typically with a save icon but also restart checkpoints, 0 for the rest
-    //int BlackScreenLoad: 0xC505B84; // 2 during cutscene and loads it seems like and 1 for regular gameplay no idea when its 0
-    byte BlackScreenLoad: 0xBB8AFB8; // 0 during loading 1 when not
-    //int playerold: 0x9B2473C; // 256 when you are the player 243 in pause menu
-    int player: 0xBB8AB70; // 256/257 during load 1 during gameplay 0 idk
-    int playerbackup: 0xBC0B674; // 1 when not loading 257 when loading 0 idk
-    int Loading: "Spider-Man2", 0xC31F368; // 1 and 256 when loading 0 when not
+    //byte BlackScreenLoad: 0xBC0B675; // 1 during loading 0 when not
+    //byte BlackScreenLoad: 0x9BC4839; // 1 during loading 0 when not
+    byte Loading: 0xC31F368; // 1 and 256 when loading 0 when not
     byte cityLoad: 0xB8A49D5; // 1 during a city load 0 when not
     int photoMode: 0xA164484; // 1 when in photo mode 0 when not
     bool mainMenu: 0xB3E2608; // 1 in the main menu of the game 0 when not
@@ -38,7 +35,6 @@ startup
         if (timingMessage == DialogResult.Yes)
             timer.CurrentTimingMethod = TimingMethod.GameTime;
     }
-
     vars.Version = "";
     vars.AutoSplitterVersion = "1.0.5";
 
@@ -74,7 +70,7 @@ startup
     {"Trouble With Harry", new List<uint>{2991192832, 4026310577, 3}}, {"This Isnt You", new List<uint>{4026310577, 1511121387, 3}},
     {"Set Things Right", new List<uint>{1511121387, 1116059359, 3}}, {"Mj Call", new List<uint>{1116059359, 2612449282, 3}},
     {"It's All Connected", new List<uint>{2612449282, 2069918651, 3}}, {"Hivemind", new List<uint>{2069918651, 4227503461, 3}},
-    {"Finally Free", new List<uint>{4227503461, 3594681202, 3}}, {"Together", new List<uint>{3594681202, 694094915, 3}},
+    {"Finally Free", new List<uint>{4227503461, 3594681202, 3}}
     /* {"", new List<uint>{,,}}, so i dont have to create this multiply times
     extra numbers
     2489002695
@@ -84,10 +80,6 @@ startup
     foreach (var split in vars.splits)
     {
         settings.Add(split.Key, false, split.Key, split.Value[2].ToString());
-        if (split.Key == "Together")
-        {
-            settings.SetToolTip(split.Key, "This will not split where time is suppose to end but a little bit before it.");
-        }
         settings.SetToolTip(split.Key, "This will split after completing " + split.Key);
     }
 }
@@ -130,9 +122,7 @@ update
     timer.Run.Metadata.SetCustomVariable("Objective", current.Objective1.ToString());
     timer.Run.Metadata.SetCustomVariable("XYZ", "(" + current.XCoord.ToString() + "," + current.YCoord.ToString() + "," + current.ZCoord.ToString() + ")");
     timer.Run.Metadata.SetCustomVariable("SaveIconLoad", current.SaveIconLoad.ToString());
-    timer.Run.Metadata.SetCustomVariable("BlackScreenLoad", current.BlackScreenLoad.ToString());
-    timer.Run.Metadata.SetCustomVariable("Player", current.player.ToString());
-    timer.Run.Metadata.SetCustomVariable("PlayerBackup", current.playerbackup.ToString());
+    //timer.Run.Metadata.SetCustomVariable("BlackScreenLoad", current.BlackScreenLoad.ToString());
     timer.Run.Metadata.SetCustomVariable("Loading", current.Loading.ToString());
 }
 
@@ -198,15 +188,16 @@ split
 
 isLoading
 {
-    if ((current.SaveIconLoad == 1 || current.BlackScreenLoad != 1 || current.player != 1 || current.playerbackup != 1 || current.cityLoad == 1) &&
-    current.mainMenu == false && current.playerbackup != 65537 && current.photoMode != 1 && vars.Version == "2.810.0.0")
+    if ((current.SaveIconLoad == 1 || current.cityLoad == 1 || current.Loading == 1) &&
+    current.mainMenu == false && current.photoMode != 1 && vars.Version == "2.810.0.0")
     {
         if (settings["Debug"])
         {
-            print("Loading: " + current.SaveIconLoad.ToString() + " BlackScreenLoad: " + current.BlackScreenLoad.ToString() + 
-            " Player: " + current.player.ToString() 
-            + " PlayerBackup: " + current.playerbackup.ToString() + " cityLoad: " + current.cityLoad.ToString()
-            + " mainMenu: " + current.mainMenu.ToString() + " photoMode: " + current.photoMode.ToString());
+            print("SaveIconLoad: " + current.SaveIconLoad.ToString() 
+            + " Loading: " + current.Loading.ToString()
+            + " cityLoad: " + current.cityLoad.ToString() 
+            + " mainMenu: " + current.mainMenu.ToString() 
+            + " photoMode: " + current.photoMode.ToString());
         }
         return true;
     } else if(vars.Version == "1.318.1.0" && current.loading == 1)
